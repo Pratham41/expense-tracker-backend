@@ -5,7 +5,11 @@ exports.userLogin = async (req,res) => {
     try{
         const result = await Users.findOne({email,password})
         if(result){
-            res.status(200).json(result)
+            res.status(200).json({
+                _id:result._id,
+                name:result.name,
+                email:result.email
+            })
         }else{
             return res.status(500).json({message:'invalid credentials !'})
         }
@@ -31,7 +35,11 @@ exports.userRegister = async (req,res) => {
           });        
           
         if(result){
-            res.status(201).json(result);
+            res.status(201).json({
+                _id:result._id,
+                name:result.name,
+                email:result.email
+            });
         }
     }
     catch(err){ 
